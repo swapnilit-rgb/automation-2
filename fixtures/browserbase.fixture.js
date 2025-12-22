@@ -11,18 +11,17 @@ const createSession = async () => {
       projectId: process.env.BROWSERBASE_PROJECT_ID || 'edeab270-64a6-4820-9945-f5d0f5b61390'
     });
 
-    // Connect to the session
+    //Connect to the session
     const browser = await chromium.connectOverCDP(session.connectUrl);
 
     // Getting the default context to ensure the sessions are recorded.
     const defaultContext = browser.contexts()[0];
     const page = defaultContext.pages()[0];
 
-    await page.goto("https://news.ycombinator.com/");
-    await page.close();
-    await browser.close();
-    console.log(`Session complete! View replay at https://browserbase.com/sessions/${session.id}`);
-    return session;
+    return {
+      session,
+      page
+    };
     } catch (error) {
     console.error(error.message);
     throw error;
