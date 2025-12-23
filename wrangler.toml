@@ -6,7 +6,6 @@ compatibility_date = "2025-12-22"
 class_name = "MyContainer"
 image = "./Dockerfile"
 max_instances = 5
-port = 8080
 
 [[durable_objects.bindings]]
 class_name = "MyContainer"
@@ -15,6 +14,3 @@ name = "MY_CONTAINER"
 [[migrations]]
 new_sqlite_classes = [ "MyContainer" ]
 tag = "v1"
-
-[observability]
-enabled = true
