@@ -13,6 +13,10 @@ app.get('/health', (c) => c.text('ok'))
 
 app.get('/tests/main', async (c) => {
   try {
+    // Get secrets from headers and set them as environment variables
+    process.env.BROWSERBASE_API_KEY = c.req.header('X-Browserbase-Api-Key');
+    process.env.BROWSERBASE_PROJECT_ID = c.req.header('X-Browserbase-Project-Id');
+
     // Execute the playwright test file. Using the list reporter for a concise output.
    const { stdout, stderr } = await execPromise('npx playwright test tests/example.spec.js');
 

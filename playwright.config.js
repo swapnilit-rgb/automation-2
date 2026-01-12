@@ -1,3 +1,20 @@
+import { readFileSync } from 'fs';
+try {
+  const envFile = readFileSync('.dev.vars', 'utf-8');
+  envFile.split('\n').forEach(line => {
+    const [key, ...value] = line.split('=');
+    if (key && value) {
+      const joinedValue = value.join('=').trim();
+      // remove quotes
+      const finalValue = joinedValue.startsWith('"') && joinedValue.endsWith('"') ? joinedValue.slice(1, -1) : joinedValue;
+      process.env[key.trim()] = finalValue;
+    }
+  });
+  console.log('Finished loading .dev.vars.');
+} catch (e) {
+  console.error('Error loading .dev.vars:', e);
+}
+
 // @ts-check
 import { defineConfig } from '@playwright/test';
 

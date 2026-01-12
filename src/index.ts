@@ -31,7 +31,10 @@ export default {
       if (url.pathname.includes("/tests/main")) {
 		  const containerInstance = await getRandom(env.MY_CONTAINER, 10);
 		  console.log("Inside API:", containerInstance);
-        return containerInstance.fetch(request);
+		  const newRequest = new Request(request);
+		  newRequest.headers.set('X-Browserbase-Api-Key', env.BROWSERBASE_API_KEY);
+		  newRequest.headers.set('X-Browserbase-Project-Id', env.BROWSERBASE_PROJECT_ID);
+        return containerInstance.fetch(newRequest);
       }
       
       // Route: /error - trigger error handling

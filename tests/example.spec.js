@@ -13,6 +13,5 @@ import createSession from '../fixtures/browserbase.fixture.js';
     await page.close();
     await browser.close();
     console.log(`Session completeddddd! View replay at https://browserbase.com/sessions/${session.id}`);
-  
   });
   
