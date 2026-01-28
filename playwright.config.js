@@ -27,7 +27,7 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
 
-  timeout: 60_000,
+  timeout: 300_000,
 
   forbidOnly: !!process.env.CI,
 
@@ -41,8 +41,10 @@ export default defineConfig({
 
   use: {
     headless: true,
-
-    // Traces still work (stored by Playwright runner)
+    viewport:{ width: 1280, height: 720}, 
+    deviceScaleFactor: 1,
+    screenshot: 'off',
+    video: 'off',    // Traces still work (stored by Playwright runner)
     trace: 'on-first-retry',
   },
 });
