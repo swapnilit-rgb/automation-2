@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { readFileSync } from 'fs';
 try {
   const envFile = readFileSync('.dev.vars', 'utf-8');

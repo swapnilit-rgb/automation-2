@@ -18,7 +18,7 @@ app.get('/tests/main', async (c) => {
     process.env.BROWSERBASE_PROJECT_ID = c.req.header('X-Browserbase-Project-Id');
 
     // Execute the playwright test file. Using the list reporter for a concise output.
-   const { stdout, stderr } = await execPromise('npx playwright test tests/example.spec.js');
+   const { stdout, stderr } = await execPromise('npx playwright test tests/main.spec.js');
 
     // const { stdout, stderr } = await execPromise('ls -');
 
